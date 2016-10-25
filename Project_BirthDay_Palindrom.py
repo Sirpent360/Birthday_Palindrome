@@ -221,9 +221,17 @@ print("difference between lived.days and palindrome ", int(list_to_number(palind
 
 # змінюємо центральну частину
 
+# center_next = []
+# for dummy_y in center:
+#     center_next += [dummy_y+1]
+# print("center_next ", center_next)
+
+# a = [4]
+# b = []
+# b.append(a[0]+1)
+
 center_next = []
-for dummy_y in center:
-    center_next += [dummy_y+1]
+center_next.append(center[0]+1)
 print("center_next ", center_next)
 
 # формуємо наступний паліндром з новою центральною частиною
