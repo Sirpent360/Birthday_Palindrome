@@ -21,8 +21,9 @@ Python for beginners
 import datetime
 from capot import list_to_number
 from capot import number_to_list
-from Birthday_Palindrome import new_palindrome
-from Birthday_Palindrome import new_center_next_palindrome
+from palindrome import new_palindrome
+from palindrome import new_center_next_palindrome
+from gold_numbers import gold_3_in_row
 
 
 # Користувач вводить дату народження. Рік, місяць, день.
@@ -66,10 +67,11 @@ print("difference between lived.days and palindrome ", int(list_to_number(new_pa
 # перетворюємо список на число
 
 new_center_palindrome = new_center_next_palindrome(new_palindrome(dummy_palindrome))
-print("center_next_palindrome ", list_to_number(new_center_palindrome))
+print("center_next_palindrome ", list_to_number([new_center_next_palindrome(dummy_palindrome)[0]]))     # new_center_next_palindrome
 print("lived.days ", lived.days)
-delta2 = int(list_to_number(new_center_palindrome))-lived.days
-print("difference between lived.days and center_next_palindrome ", int(list_to_number(new_center_palindrome))-lived.days)
+delta2 = int(list_to_number([new_center_next_palindrome(dummy_palindrome)[0]]))-lived.days
+print("difference between lived.days and center_next_palindrome ", int(list_to_number([new_center_next_palindrome(dummy_palindrome)[0]]))-lived.days)
+
 
 #   Календарні дати
 # виводимо календарні дати, коли ці паліндроми будуть по календарю
@@ -86,19 +88,41 @@ print()
 #   Виведемо дати коли ці паліндроми відбувались у форматі: День Місяць Рік
 # string_date =  my_date.strftime('%d/%m/%Y')  # This writes "24/06/1984"
 
-string_date_palindrome = palindrome_date.strftime('%d/%m/%Y')
+# string_date_palindrome = palindrome_date.strftime('%d/%m/%Y')
 # print("Your next palindrome date: ", string_date_palindrome, "\nYou will have days lived: ",
 # list_to_number(palindrome))
 print("Your next palindrome date: \nDay: %s Month: %s Year: %s" % (palindrome_date.day, palindrome_date.month, palindrome_date.year))
 print("You will have days lived: ", list_to_number(new_palindrome(dummy_palindrome)[0]))
 print()
 
-string_date_center_next_palindrome_date = center_next_palindrome_date.strftime('%d/%m/%Y')
+# string_date_center_next_palindrome_date = center_next_palindrome_date.strftime('%d/%m/%Y')
 # print("Your previous palindrome date: ", string_date_center_next_palindrome_date, "\nYou will has days lived: ",
-#  list_to_number(center_next_palindrome), "\n")
+# list_to_number(center_next_palindrome), "\n")
 print("Your previous palindrome date: \nDay: %s Month: %s Year: %s" % (center_next_palindrome_date.day, center_next_palindrome_date.month, center_next_palindrome_date.year))
 print("You has days lived: ", list_to_number(new_center_palindrome))
 print()
+
+# Виводимо золоті "номери"
+# gold_3_in_row
+
+delta3 = int(list_to_number(gold_3_in_row(new_palindrome(dummy_palindrome))[0]))-lived.days
+print("delta3: ", delta3)
+print("Gold number: ", gold_3_in_row(new_palindrome(dummy_palindrome))[0])
+gold_3_in_row_date = today - datetime.timedelta(delta3)
+print("gold_3_in_row_date: ", gold_3_in_row_date, "\n")
+# new_palindrome(dummy_palindrome)
+print("Your next gold number: \nDay: %s Month: %s Year: %s" % (gold_3_in_row_date.day, gold_3_in_row_date.month,
+                                                               gold_3_in_row_date.year))
+print("You will have days lived at next gold number: ", list_to_number(new_palindrome(dummy_palindrome)[0]))
+
+# gold_3_in_row_next
+
+delta4 = int(list_to_number(gold_3_in_row(new_palindrome(dummy_palindrome))[0]))-lived.days
+gold_3_in_row_next_date = today - datetime.timedelta(delta4)
+# new_palindrome(dummy_palindrome)
+print("Your another gold number: \nDay: %s Month: %s Year: %s" % (gold_3_in_row_next_date.day, gold_3_in_row_next_date.month,
+                                                               gold_3_in_row_next_date.year))
+print("You will have days lived at another gold number: ", list_to_number(new_palindrome(dummy_palindrome)[0]))
 
 # list_to_number(palindrome)
 # list_to_number(center_next_palindrome)
@@ -113,6 +137,6 @@ if __name__ == "__main__":
     birth_year = 1977
     birth_month = 5
     birth_day = 30
-    today = datetime.date(2016, 10, 28)
+    today = datetime.date(2016, 10, 29)
     # print("lived.days ", lived.days)        # lived.days = 14396
-    assert lived.days == 14396              # працює, видає AssertionError, якщо дати введена інша дата народження
+    assert lived.days == 14397  # працює, видає AssertionError, якщо дати введена інша дата народження
