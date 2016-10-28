@@ -1,3 +1,7 @@
+import datetime
+from capot import list_to_number
+from capot import number_to_list
+
 """
 Проект Web Academy
 Python for beginners
@@ -24,13 +28,6 @@ Python for beginners
 отримуємо в результаті непарне число (12, 12 => 21, в центрі, наприклад 3, 12 + 3 + 21 => 12321)
 
 """
-
-
-import datetime
-from capot import list_to_number
-from capot import number_to_list
-
-
 def new_palindrome(dummy_palindrome):
     # якщо довжина паліндрома непарне число len(dummy_palindrome)
     # first + center + end
