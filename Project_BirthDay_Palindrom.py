@@ -65,9 +65,10 @@ def center_next_palindrome(palindrome_list):
     center_next.append(new_palindrome(dummy_palindrome)[2][0]+1)
     print("center_next ", center_next)
     # формуємо наступний паліндром з новою центральною частиною
-    center_next_palindrome = new_palindrome(dummy_palindrome)[1] + center_next + new_palindrome(dummy_palindrome)[3]
-    print("center_next_palindrome ", center_next_palindrome)
-    return center_next_palindrome
+    # center_next_palindrome = new_palindrome(dummy_palindrome)[1] + center_next + new_palindrome(dummy_palindrome)[3]
+    result = new_palindrome(dummy_palindrome)[1] + center_next + new_palindrome(dummy_palindrome)[3]
+    print("center_next_palindrome ", result)
+    return result
 
 # Користувач вводить дату народження. Рік, місяць, день.
 
