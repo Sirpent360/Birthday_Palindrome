@@ -28,6 +28,7 @@ Python for beginners
 
 import datetime
 from capot import list_to_number
+from capot import number_to_list
 
 
 # Користувач вводить дату народження. Рік, місяць, день.
@@ -69,10 +70,7 @@ print("You have already days lived: ", lived.days, "\n")
 #
 #
 
-pal = str(lived.days)
-dummy_palindrome = []
-for dummy_x in pal:
-    dummy_palindrome += [int(dummy_x)]
+dummy_palindrome = number_to_list(lived.days)
 print("dummy_palindrome is: ", dummy_palindrome)
 
 # якщо довжина паліндрома непарне число len(dummy_palindrome)
