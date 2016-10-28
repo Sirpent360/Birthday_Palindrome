@@ -38,13 +38,15 @@ def list_to_number(pal):
         output_palindrome += str(dummy_sym)
     return(output_palindrome)
 
-# birth_year = int(input("Введіть свій рік народження: "))
-# birth_month = int(input("Введіть свій місяць народження: "))
-# birth_day = int(input("Введіть свій день народження: "))
+birth_year = int(input("Введіть свій рік народження: "))
+birth_month = int(input("Введіть свій місяць народження: "))
+birth_day = int(input("Введіть свій день народження: "))
 #
-# print(birth_year)
-# print(birth_month)
-# print(birth_day)
+print()
+print("birth_year: ", birth_year)
+print("birth_month: ", birth_month)
+print("birth_day: ", birth_day)
+print()
 
     #
     #   Вираховуємо кількість прожитих днів
@@ -53,7 +55,7 @@ def list_to_number(pal):
     #
 today = datetime.date.today()
 print("Today is: ", today)
-birth = datetime.date(1977, 5, 30)
+birth = datetime.date(birth_year, birth_month, birth_day)
 lived = (abs(today - birth))
 print("You have already days lived: ", lived.days, "\n")
 
