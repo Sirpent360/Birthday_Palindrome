@@ -198,3 +198,15 @@ print()
 # palindrome_date
 
 # print("Your next palindrome date: \nDay: %s Month: %s Year: %s" % (palindrome_date.day, palindrome_date.month, palindrome_date.year))
+
+#
+# наш внутрішній Unit-test )
+#
+
+if __name__ == "__main__":
+    birth_year = 1977
+    birth_month = 5
+    birth_day = 30
+    today = datetime.date(2016, 10, 28)
+    print("lived.days ", lived.days)        # lived.days = 14396
+    assert lived.days == 14396              # працює, видає AssertionError, якщо дати введена інша дата народження
