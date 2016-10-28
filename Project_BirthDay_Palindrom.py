@@ -51,10 +51,11 @@ def new_palindrome(dummy_palindrome):
     palindrome = first + center + end
     print("palindrome ", palindrome, "\n")
     palindrome_list = [palindrome, first, center, end]
+    print("palindrome_list ", palindrome_list, "\n")
     return palindrome_list
 
 
-def center_next_palindrome(palindrome_list):
+def new_center_next_palindrome(palindrome_list):
     # отримуємо новий паліндром через зміну "центральної" частини
     # додаємо одиницю до центральної частини - отримуємо
     # змінюємо центральну частину
@@ -82,10 +83,9 @@ print("birth_month: ", birth_month)
 print("birth_day: ", birth_day)
 print()
 
-
-    #   Вираховуємо кількість прожитих днів
-    #
-    # (скільки днів прожито від дати народження до сьогоднішнього дня)
+# Вираховуємо кількість прожитих днів
+#
+# скільки днів прожито від дати народження до сьогоднішнього дня)
 
 today = datetime.date.today()
 print("Today is: ", today)
@@ -93,30 +93,22 @@ birth = datetime.date(birth_year, birth_month, birth_day)
 lived = (abs(today - birth))
 print("You have already days lived: ", lived.days, "\n")
 
-
-# 2016-10-03
-# 14371 days, 0:00:00
-
-# Паліндроми
-# 14341
-
 # Паліндром з кількості прожитих днів
 #
 # Отримуємо кількість прожитих днів
 # Робимо з числа список
 # робимо зі списку паліндром
 # робимо з паліндрома(список) - паліндром (число)
-#
-#
 
 dummy_palindrome = number_to_list(lived.days)
 print("dummy_palindrome is: ", dummy_palindrome)
 
 # перетворюємо список на число
-print("center_next_palindrome ", list_to_number(center_next_palindrome))
+new_center_palindrome = new_center_next_palindrome(new_palindrome(dummy_palindrome))
+print("center_next_palindrome ", list_to_number(new_center_palindrome))
 print("lived.days ", lived.days)
-delta2 = int(list_to_number(center_next_palindrome))-lived.days
-print("difference between lived.days and center_next_palindrome ", int(list_to_number(center_next_palindrome))-lived.days)
+delta2 = int(list_to_number(new_center_palindrome))-lived.days
+print("difference between lived.days and center_next_palindrome ", int(list_to_number(new_center_palindrome))-lived.days)
 
 # перетворюємо список на число
 print("list_to_number palindrome ", list_to_number(new_palindrome(dummy_palindrome)[0]))
@@ -164,7 +156,7 @@ string_date_center_next_palindrome_date = center_next_palindrome_date.strftime('
 # print("Your previous palindrome date: ", string_date_center_next_palindrome_date, "\nYou will has days lived: ",
 #  list_to_number(center_next_palindrome), "\n")
 print("Your previous palindrome date: \nDay: %s Month: %s Year: %s" % (center_next_palindrome_date.day, center_next_palindrome_date.month, center_next_palindrome_date.year))
-print("You has days lived: ", list_to_number(center_next_palindrome))
+print("You has days lived: ", list_to_number(new_center_palindrome))
 print()
 
 
