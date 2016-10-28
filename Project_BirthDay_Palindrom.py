@@ -31,6 +31,44 @@ from capot import list_to_number
 from capot import number_to_list
 
 
+def new_palindrome(dummy_palindrome):
+    # якщо довжина паліндрома непарне число len(dummy_palindrome)
+    # first + center + end
+    #
+    # отримуємо новий паліндром через віддзеркалення "першої" частини
+    lenght = len(dummy_palindrome)
+    # print(lenght)
+    first_part_end_index = lenght // 2
+    first = dummy_palindrome[:first_part_end_index]
+    print("first ", first)
+    center_part_index = first_part_end_index
+    # print(center_part_index)
+    center = [dummy_palindrome[center_part_index]]
+    print("center ", center)
+    # # віддзеркалюємо першу половину - отримуємо
+    end = first[::-1]
+    print("end ", end)
+    palindrome = first + center + end
+    print("palindrome ", palindrome, "\n")
+    palindrome_list = [palindrome, first, center, end]
+    return palindrome_list
+
+
+def center_next_palindrome(palindrome_list):
+    # отримуємо новий паліндром через зміну "центральної" частини
+    # додаємо одиницю до центральної частини - отримуємо
+    # змінюємо центральну частину
+    # a = [4]
+    # b = []
+    # b.append(a[0]+1)
+    center_next = []
+    center_next.append(new_palindrome(dummy_palindrome)[2][0]+1)
+    print("center_next ", center_next)
+    # формуємо наступний паліндром з новою центральною частиною
+    center_next_palindrome = new_palindrome(dummy_palindrome)[1] + center_next + new_palindrome(dummy_palindrome)[3]
+    print("center_next_palindrome ", center_next_palindrome)
+    return center_next_palindrome
+
 # Користувач вводить дату народження. Рік, місяць, день.
 
 birth_year = int(input("Введіть свій рік народження: "))
@@ -73,64 +111,18 @@ print("You have already days lived: ", lived.days, "\n")
 dummy_palindrome = number_to_list(lived.days)
 print("dummy_palindrome is: ", dummy_palindrome)
 
-# якщо довжина паліндрома непарне число len(dummy_palindrome)
-# first + center + end
-#
-# отримуємо новий паліндром через віддзеркалення "першої" частини
-
-
-lenght = len(dummy_palindrome)
-#print(lenght)
-first_part_end_index = lenght // 2
-
-first = dummy_palindrome[:first_part_end_index]
-print("first ", first)
-
-center_part_index = first_part_end_index
-#print(center_part_index)
-center = [dummy_palindrome[center_part_index]]
-print("center ", center)
-
-# # віддзеркалюємо першу половину - отримуємо
-
-end = first[::-1]
-print("end ", end)
-
-palindrome = first + center + end
-print("palindrome ", palindrome, "\n")
-
-# перетворюємо список на число
-print("list_to_number palindrome ", list_to_number(palindrome))
-print("lived.days ", lived.days)
-delta = int(list_to_number(palindrome))-lived.days
-print("difference between lived.days and palindrome ", int(list_to_number(palindrome))-lived.days, "\n")
-
-#
-# отримуємо новий паліндром через зміну "центральної" частини
-# додаємо одиницю до центральної частини - отримуємо
-#
-#
-
-# змінюємо центральну частину
-
-# a = [4]
-# b = []
-# b.append(a[0]+1)
-
-center_next = []
-center_next.append(center[0]+1)
-print("center_next ", center_next)
-
-# формуємо наступний паліндром з новою центральною частиною
-
-center_next_palindrome = first + center_next + end
-print("center_next_palindrome ", center_next_palindrome)
-
 # перетворюємо список на число
 print("center_next_palindrome ", list_to_number(center_next_palindrome))
 print("lived.days ", lived.days)
 delta2 = int(list_to_number(center_next_palindrome))-lived.days
 print("difference between lived.days and center_next_palindrome ", int(list_to_number(center_next_palindrome))-lived.days)
+
+# перетворюємо список на число
+print("list_to_number palindrome ", list_to_number(new_palindrome(dummy_palindrome)[0]))
+print("lived.days ", lived.days)
+delta = int(list_to_number(new_palindrome(dummy_palindrome)[0]))-lived.days
+print("difference between lived.days and palindrome ", int(list_to_number(new_palindrome(dummy_palindrome)[0]))-lived.days, "\n")
+
 
 #
 #   Календарні дати
@@ -161,13 +153,15 @@ print()
 # string_date =  my_date.strftime('%d/%m/%Y')  # This writes "24/06/1984"
 
 string_date_palindrome = palindrome_date.strftime('%d/%m/%Y')
-# print("Your next palindrome date: ", string_date_palindrome, "\nYou will have days lived: ", list_to_number(palindrome))
+# print("Your next palindrome date: ", string_date_palindrome, "\nYou will have days lived: ",
+# list_to_number(palindrome))
 print("Your next palindrome date: \nDay: %s Month: %s Year: %s" % (palindrome_date.day, palindrome_date.month, palindrome_date.year))
-print("You will have days lived: ", list_to_number(palindrome))
+print("You will have days lived: ", list_to_number(new_palindrome(dummy_palindrome)[0]))
 print()
 
 string_date_center_next_palindrome_date = center_next_palindrome_date.strftime('%d/%m/%Y')
-# print("Your previous palindrome date: ", string_date_center_next_palindrome_date, "\nYou will has days lived: ", list_to_number(center_next_palindrome), "\n")
+# print("Your previous palindrome date: ", string_date_center_next_palindrome_date, "\nYou will has days lived: ",
+#  list_to_number(center_next_palindrome), "\n")
 print("Your previous palindrome date: \nDay: %s Month: %s Year: %s" % (center_next_palindrome_date.day, center_next_palindrome_date.month, center_next_palindrome_date.year))
 print("You has days lived: ", list_to_number(center_next_palindrome))
 print()
@@ -176,28 +170,12 @@ print()
 # list_to_number(palindrome)
 # list_to_number(center_next_palindrome)
 
-# Друкуємо дати паліндромів у красивому вигляді
-# День:  Місяць: Рік:
-# now = datetime.datetime.now()
-# >>> now.date()
-# datetime.date(2016, 10, 25)
-# >>> now.day
-# 25
-# >>> now.month
-# 10
-# >>> now.year
-# 2016
-
-# from datetime import datetime
-# now = datetime.now()
-#
-# print '%s/%s/%s %s:%s:%s' % (now.month, now.day, now.year, now.hour, now.minute, now.second)
-
 # now = datetime.datetime.now()
 # print("%s/%s/%s" % (now.day, now.month, now.year))
 # palindrome_date
 
-# print("Your next palindrome date: \nDay: %s Month: %s Year: %s" % (palindrome_date.day, palindrome_date.month, palindrome_date.year))
+# print("Your next palindrome date: \nDay: %s Month: %s Year: %s" % (palindrome_date.day, palindrome_date.month,
+# palindrome_date.year))
 
 #
 # наш внутрішній Unit-test )
@@ -208,5 +186,5 @@ if __name__ == "__main__":
     birth_month = 5
     birth_day = 30
     today = datetime.date(2016, 10, 28)
-    print("lived.days ", lived.days)        # lived.days = 14396
+    # print("lived.days ", lived.days)        # lived.days = 14396
     assert lived.days == 14396              # працює, видає AssertionError, якщо дати введена інша дата народження
