@@ -25,18 +25,12 @@ Python for beginners
 
 """
 
-import time
-#from datetime import date
+
 import datetime
+from capot import list_to_number
 
-# перетворюємо список на число
 
-
-def list_to_number(pal):
-    output_palindrome = ""
-    for dummy_sym in pal:
-        output_palindrome += str(dummy_sym)
-    return(output_palindrome)
+# Користувач вводить дату народження. Рік, місяць, день.
 
 birth_year = int(input("Введіть свій рік народження: "))
 birth_month = int(input("Введіть свій місяць народження: "))
@@ -48,11 +42,11 @@ print("birth_month: ", birth_month)
 print("birth_day: ", birth_day)
 print()
 
-    #
+
     #   Вираховуємо кількість прожитих днів
     #
-    # скільки днів прожито від дати народження до сьогоднішнього дня
-    #
+    # (скільки днів прожито від дати народження до сьогоднішнього дня)
+
 today = datetime.date.today()
 print("Today is: ", today)
 birth = datetime.date(birth_year, birth_month, birth_day)
@@ -66,16 +60,14 @@ print("You have already days lived: ", lived.days, "\n")
 # Паліндроми
 # 14341
 
-
-
-    #   Паліндром з кількості прожитих днів
-    #
-    #Отримуємо кількість прожитих днів
-    #Робимо з числа список
-    #робимо зі списку паліндром
-    #робимо з паліндрома(список) - паліндром (число)
-    #
-    #
+# Паліндром з кількості прожитих днів
+#
+# Отримуємо кількість прожитих днів
+# Робимо з числа список
+# робимо зі списку паліндром
+# робимо з паліндрома(список) - паліндром (число)
+#
+#
 
 pal = str(lived.days)
 dummy_palindrome = []
@@ -145,7 +137,7 @@ print("difference between lived.days and center_next_palindrome ", int(list_to_n
 #
 #   Календарні дати
 #
-# друкуємо дати коли ці паліндроми будуть по календарю
+# виводимо календарні дати, коли ці паліндроми будуть по календарю
 #
 #
 
