@@ -69,16 +69,16 @@ def new_center_next_palindrome(palindrome_list):
     return result
 
 # Користувач вводить дату народження. Рік, місяць, день.
-
-birth_year = int(input("Введіть свій рік народження: "))
-birth_month = int(input("Введіть свій місяць народження: "))
-birth_day = int(input("Введіть свій день народження: "))
 #
-print()
-print("birth_year: ", birth_year)
-print("birth_month: ", birth_month)
-print("birth_day: ", birth_day)
-print()
+# birth_year = int(input("Введіть свій рік народження: "))
+# birth_month = int(input("Введіть свій місяць народження: "))
+# birth_day = int(input("Введіть свій день народження: "))
+# #
+# print()
+# print("birth_year: ", birth_year)
+# print("birth_month: ", birth_month)
+# print("birth_day: ", birth_day)
+# print()
 
 # Вираховуємо кількість прожитих днів
 #
@@ -86,7 +86,8 @@ print()
 
 today = datetime.date.today()
 print("Today is: ", today)
-birth = datetime.date(birth_year, birth_month, birth_day)
+# birth = datetime.date(birth_year, birth_month, birth_day)
+birth = datetime.date(1977, 5, 30)
 lived = (abs(today - birth))
 print("You have already days lived: ", lived.days, "\n")
 

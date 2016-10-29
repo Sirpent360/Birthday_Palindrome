@@ -20,33 +20,37 @@ Python for beginners
 """
 import datetime
 from capot import list_to_number
+from capot import list_to_number_int
 from capot import number_to_list
+from capot import lived_days
+from capot import fake_palindrome
 from palindrome import new_palindrome
 from palindrome import new_center_next_palindrome
 from gold_numbers import gold_3_in_row
-
+from gold_numbers import gold_3_in_row_next
 
 # Користувач вводить дату народження. Рік, місяць, день.
 
-birth_year = int(input("Введіть свій рік народження: "))
-birth_month = int(input("Введіть свій місяць народження: "))
-birth_day = int(input("Введіть свій день народження: "))
-#
-print()
-print("birth_year: ", birth_year)
-print("birth_month: ", birth_month)
-print("birth_day: ", birth_day)
-print()
+# birth_year = int(input("Введіть свій рік народження: "))
+# birth_month = int(input("Введіть свій місяць народження: "))
+# birth_day = int(input("Введіть свій день народження: "))
+# #
+# print()
+# print("birth_year: ", birth_year)
+# print("birth_month: ", birth_month)
+# print("birth_day: ", birth_day)
+# print()
 
 # Вираховуємо кількість прожитих днів
 #
 # скільки днів прожито від дати народження до сьогоднішнього дня)
 
-today = datetime.date.today()
-print("Today is: ", today)
-birth = datetime.date(birth_year, birth_month, birth_day)
-lived = (abs(today - birth))
-print("You have already days lived: ", lived.days, "\n")
+# today = datetime.date.today()
+# print("Today is: ", today)
+# # birth = datetime.date(birth_year, birth_month, birth_day)
+birth = datetime.date(1977, 5, 30)
+# lived = (abs(today - birth))
+# print("You have already days lived: ", lived.days, "\n")
 
 # Паліндром з кількості прожитих днів
 #
@@ -55,27 +59,29 @@ print("You have already days lived: ", lived.days, "\n")
 # робимо зі списку паліндром
 # робимо з паліндрома(список) - паліндром (число)
 
-dummy_palindrome = number_to_list(lived.days)
+dummy_palindrome = number_to_list(lived_days(birth))
 print("dummy_palindrome is: ", dummy_palindrome)
+
+lived = lived_days(birth)
 
 # перетворюємо список на число
 print("list_to_number palindrome ", list_to_number(new_palindrome(dummy_palindrome)[0]))
-print("lived.days ", lived.days)
-delta = int(list_to_number(new_palindrome(dummy_palindrome)[0]))-lived.days
-print("difference between lived.days and palindrome ", int(list_to_number(new_palindrome(dummy_palindrome)[0]))-lived.days, "\n")
+print("lived.days ", lived_days(birth))
+delta = int(list_to_number(new_palindrome(dummy_palindrome)[0]))-lived_days(birth)
+print("difference between lived_days(birth) and palindrome ", int(list_to_number(new_palindrome(dummy_palindrome)[0]))-lived_days(birth), "\n")
 
 # перетворюємо список на число
 
 new_center_palindrome = new_center_next_palindrome(new_palindrome(dummy_palindrome))
 print("center_next_palindrome ", list_to_number([new_center_next_palindrome(dummy_palindrome)[0]]))     # new_center_next_palindrome
-print("lived.days ", lived.days)
-delta2 = int(list_to_number([new_center_next_palindrome(dummy_palindrome)[0]]))-lived.days
-print("difference between lived.days and center_next_palindrome ", int(list_to_number([new_center_next_palindrome(dummy_palindrome)[0]]))-lived.days)
+print("lived_days(birth) ", lived_days(birth))
+delta2 = int(list_to_number([new_center_next_palindrome(dummy_palindrome)[0]]))-lived_days(birth)
+print("difference between lived_days(birth) and center_next_palindrome ", int(list_to_number([new_center_next_palindrome(dummy_palindrome)[0]]))-lived_days(birth))
 
 
 #   Календарні дати
 # виводимо календарні дати, коли ці паліндроми будуть по календарю
-# print("lived.days ", lived.days)
+# print("lived_days(birth) ", lived_days(birth))
 
 today = datetime.date.today()
 palindrome_date = today - datetime.timedelta(delta)
@@ -105,24 +111,35 @@ print()
 # Виводимо золоті "номери"
 # gold_3_in_row
 
-delta3 = int(list_to_number(gold_3_in_row(new_palindrome(dummy_palindrome))[0]))-lived.days
+delta3 = lived_days(birth) - (list_to_number_int(gold_3_in_row(new_palindrome(dummy_palindrome))))
+print()
+print("lived_days(birth): ", lived_days(birth))
+print("dummy_palindrome: ", dummy_palindrome)
+print("new_palindrome(dummy_palindrome): ", new_palindrome(dummy_palindrome))
+# print("(new_palindrome(dummy_palindrome))[0]: ", (new_palindrome(dummy_palindrome))[0])
+print("gold_3_in_row ",gold_3_in_row(new_palindrome(dummy_palindrome)))
+print("list_to_number_int", list_to_number_int(gold_3_in_row(new_palindrome(dummy_palindrome))))
+# print("int", int(list_to_number(gold_3_in_row(new_palindrome(dummy_palindrome)))))
 print("delta3: ", delta3)
-print("Gold number: ", gold_3_in_row(new_palindrome(dummy_palindrome))[0])
+print()
+
+print("Gold number: ", list_to_number_int(gold_3_in_row(new_palindrome(dummy_palindrome))))
 gold_3_in_row_date = today - datetime.timedelta(delta3)
 print("gold_3_in_row_date: ", gold_3_in_row_date, "\n")
 # new_palindrome(dummy_palindrome)
-print("Your next gold number: \nDay: %s Month: %s Year: %s" % (gold_3_in_row_date.day, gold_3_in_row_date.month,
-                                                               gold_3_in_row_date.year))
-print("You will have days lived at next gold number: ", list_to_number(new_palindrome(dummy_palindrome)[0]))
+print("Your previous gold number was: \nDay: %s Month: %s Year: %s" %
+      (gold_3_in_row_date.day, gold_3_in_row_date.month, gold_3_in_row_date.year))
+print("You has lived at previous gold number, days: ", list_to_number_int(gold_3_in_row(new_palindrome(dummy_palindrome))),"\n")
 
 # gold_3_in_row_next
 
-delta4 = int(list_to_number(gold_3_in_row(new_palindrome(dummy_palindrome))[0]))-lived.days
+delta4 = lived_days(birth) - (list_to_number_int(gold_3_in_row_next(new_palindrome(dummy_palindrome))))
+# delta3 = lived_days(birth) - (list_to_number_int(gold_3_in_row(new_palindrome(dummy_palindrome))))
 gold_3_in_row_next_date = today - datetime.timedelta(delta4)
 # new_palindrome(dummy_palindrome)
-print("Your another gold number: \nDay: %s Month: %s Year: %s" % (gold_3_in_row_next_date.day, gold_3_in_row_next_date.month,
-                                                               gold_3_in_row_next_date.year))
-print("You will have days lived at another gold number: ", list_to_number(new_palindrome(dummy_palindrome)[0]))
+print("Your another gold number: \nDay: %s Month: %s Year: %s" %
+      (gold_3_in_row_next_date.day, gold_3_in_row_next_date.month, gold_3_in_row_next_date.year))
+print("You will have lived at another gold number, days: ", list_to_number_int(gold_3_in_row_next(new_palindrome(dummy_palindrome))),"\n")
 
 # list_to_number(palindrome)
 # list_to_number(center_next_palindrome)
@@ -138,5 +155,5 @@ if __name__ == "__main__":
     birth_month = 5
     birth_day = 30
     today = datetime.date(2016, 10, 29)
-    # print("lived.days ", lived.days)        # lived.days = 14396
-    assert lived.days == 14397  # працює, видає AssertionError, якщо дати введена інша дата народження
+    # print("lived_days(birth) ", lived_days(birth))        # lived_days(birth) = 14396
+    assert lived_days(birth) == 14397  # працює, видає AssertionError, якщо дати введена інша дата народження
